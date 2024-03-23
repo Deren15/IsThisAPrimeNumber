@@ -8,6 +8,14 @@ app.use(express.json()); // For parsing application/json
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.get("/s", (req, res) => {
+    res.json({ message: "Hi"})
+})
+
+app.post("/d", (req, res) => {
+    res.json({ message: "Hi"})
+})
+
 app.post('/checkprime', (req, res) => {
     try {
         const number = req.body.number;
