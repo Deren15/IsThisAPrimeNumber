@@ -6,7 +6,8 @@ app.use(express.static('public'));
 app.use(express.json()); // For parsing application/json
 
 app.post('/checkprime', (req, res) => {
-    const number = req.body.number;
+    try {
+        const number = req.body.number;
     let isPrime = true;
 
     if (number < 2) isPrime = false;
@@ -19,6 +20,10 @@ app.post('/checkprime', (req, res) => {
     }
 
     res.json({ number: number, isPrime: isPrime });
+    } catch(err) {
+        console.log(err.message)
+        res.json({ err: err.message })
+    }
 });
 
 app.listen(port, () => {
