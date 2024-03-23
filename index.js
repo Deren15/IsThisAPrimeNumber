@@ -2,7 +2,6 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
-app.use(express.static('public'));
 app.use(express.json()); // For parsing application/json
 
 app.post('/checkprime', (req, res) => {
@@ -25,6 +24,8 @@ app.post('/checkprime', (req, res) => {
         res.json({ err: err.message })
     }
 });
+
+app.use(express.static('public'));
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
