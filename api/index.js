@@ -1,24 +1,12 @@
 const express = require('express');
 const app = express();
-const path = require("path");
-const bodyParser = require("body-parser")
 const port = 3000;
 
+app.use(express.static('public'));
 app.use(express.json()); // For parsing application/json
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.get("/s", (req, res) => {
-    res.json({ message: "Hi"})
-})
-
-app.post("/d", (req, res) => {
-    res.json({ message: "Hi"})
-})
 
 app.post('/checkprime', (req, res) => {
-    try {
-        const number = req.body.number;
+    const number = req.body.number;
     let isPrime = true;
 
     if (number < 2) isPrime = false;
@@ -31,15 +19,6 @@ app.post('/checkprime', (req, res) => {
     }
 
     res.json({ number: number, isPrime: isPrime });
-    } catch(err) {
-        console.log(err.message)
-        res.json({ err: err.message })
-    }
-});
-
-app.use(express.static('public'));
-app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.listen(port, () => {
