@@ -1,0 +1,10 @@
+name: Cronkick starter
+# Replace the echo with your job. Edit the cronkick line to change when it runs.
+on:
+  workflow_dispatch:
+  # cronkick: "0 * * * *"
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Cronkick started this run at $(date -u)"
